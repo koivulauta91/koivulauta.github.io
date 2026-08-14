@@ -91,3 +91,13 @@ tr th {
     display:flex;
   }
 }
+
+/* Dark mode */
+body.dark-mode{
+  background:#121213;
+  color:#e6e6e6;
+}
+body.dark-mode .navbar{
+  background:#0b0b0b;
+}
+body.dark-mode a{ color: #8ab4ff }

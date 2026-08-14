@@ -1,0 +1,10 @@
+{
+  "home": "Home",
+  "login": "Login",
+  "register": "Register",
+  "profile": "Profile",
+  "admin": "Admin",
+  "boards": "Boards",
+  "threads": "Threads",
+  "telegram": "Telegram"
+}

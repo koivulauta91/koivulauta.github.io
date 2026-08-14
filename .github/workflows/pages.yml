@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - feature/site-finish
+      - main
+  workflow_dispatch: {}
 
 jobs:
   build-and-deploy:

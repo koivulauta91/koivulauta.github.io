@@ -4,16 +4,20 @@ import { auth, db } from "./firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
+import React, { Suspense, lazy } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
-import Admin from "./pages/Admin";
+const Admin = lazy(() => import("./pages/Admin"));
+const Threads = lazy(() => import("./pages/Threads"));
 import Boards from "./pages/Boards";
-import Threads from "./pages/Threads";
+import Privacy from "./pages/privacy";
+import CookiesPage from "./pages/cookies";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CookieBanner from "./components/CookieBanner";
 
 function AdminRoute({ children }) {
   const [checked, setChecked] = useState(false);
@@ -45,16 +49,20 @@ function AdminRoute({ children }) {
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
-      <Route path="/boards" element={<Boards />}/>
-      <Route path="/threads" element={<Threads />}/>
-      <Route path="/category/:slug" element={<Threads />}/>
-    </Routes>
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
+        <Route path="/boards" element={<Boards />}/>
+        <Route path="/threads" element={<Threads />}/>
+        <Route path="/category/:slug" element={<Threads />}/>
+        <Route path="/privacy" element={<Privacy />}/>
+        <Route path="/cookies" element={<CookiesPage />}/>
+      </Routes>
+    </React.Suspense>
   );
 }
 
@@ -70,6 +78,7 @@ function AppWrapper() {
         <AppRoutes />
       </main>
       {!isHome && <Footer />}
+      <CookieBanner />
     </>
   );
 }

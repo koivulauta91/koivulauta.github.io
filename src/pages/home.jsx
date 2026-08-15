@@ -16,8 +16,8 @@ function Home() {
         <h1 id="title">{isFi ? (t('welcome_title') || 'Tervetuloa Koivulautaan') : (t('welcome_title') || 'Welcome to Koivulauta')}</h1>
         <p id="desc">{isFi ? (t('welcome_desc') || 'Kaksikielinen keskustelufoorumi suomalaisille ja kansainvälisille käyttäjille.') : (t('welcome_desc') || 'A bilingual discussion forum for Finnish and international users.')}</p>
         <div style={{display:'flex',gap:10,justifyContent:'center',marginTop:18}}>
-          <a href="/login" className="btn" style={{background:'#eee',color:'#111',padding:'10px 18px',borderRadius:6,textDecoration:'none'}}>Kirjaudu</a>
-          <a href="/register" className="btn" style={{textDecoration:'none'}}>Rekisteröidy</a>
+          <Link to="/login" className="btn" style={{background:'#eee',color:'#111',padding:'10px 18px',borderRadius:6,textDecoration:'none'}}>Kirjaudu</Link>
+          <Link to="/register" className="btn" style={{textDecoration:'none'}}>Rekisteröidy</Link>
         </div>
       </section>
 

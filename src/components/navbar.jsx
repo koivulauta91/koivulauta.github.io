@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { auth, db } from "../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, collection, query, where, onSnapshot } from "firebase/firestore";
+import logo from "../assets/logo.svg";
 
 function Navbar() {
   const { t, i18n } = useTranslation();
@@ -58,8 +59,8 @@ function Navbar() {
   return (
     <header className="site-header">
       <div style={{display:'flex',alignItems:'center',gap:12}} className="logo">
-        <div className="logo-k">K</div>
-        <Link to="/" style={{color:'inherit',fontWeight:700,textDecoration:'none'}}>Koivulauta</Link>
+        <img src={logo} alt="Koivulauta" style={{width:44,height:44}} />
+        <Link to="/" style={{color:'inherit',fontWeight:700,textDecoration:'none',marginLeft:6}}>Koivulauta</Link>
       </div>
 
       <nav style={{display:'flex',gap:18,alignItems:'center'}} className="main-nav">

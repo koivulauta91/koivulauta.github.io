@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#F5F5F0"/>
+  <g transform="translate(12,12)" fill="#111">
+    <rect x="0" y="0" width="8" height="40" rx="2"/>
+    <rect x="12" y="0" width="8" height="40" rx="2"/>
+    <text x="36" y="28" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111">K</text>
+  </g>
+</svg>

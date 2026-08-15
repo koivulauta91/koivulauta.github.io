@@ -71,24 +71,28 @@ tr th {
 
 /* Responsive */
 @media (max-width:768px){
-
-  .menu-btn{
+n  .menu-btn{
     display:block;
     background:transparent;
     border:0;
-    color:white;
-    font-size:18px;
+    color:#111;
+    font-size:20px;
+    z-index:60;
   }
 
-  .menu{
-    display:none;
-    flex-direction:column;
-    width:100%;
-    margin-top:10px;
-  }
+  .main-nav{ display:none }
+  .header-controls{ display:none }
+
+  .menu{ display:none }
 
   .menu.active{
-    display:flex;
+    display:block;
+    position:fixed;
+    left:0;right:0;top:64px;bottom:0;
+    background:var(--bg);
+    padding:20px;
+    overflow:auto;
+    z-index:55;
   }
 }
 

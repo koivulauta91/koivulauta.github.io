@@ -54,27 +54,31 @@ function Navbar() {
   const close = () => setOpen(false);
 
   return (
-    <nav className="navbar" style={{position:'relative'}}>
-      <div style={{display:'flex',alignItems:'center',gap:12}}>
-        <img src="/favicon.svg" alt="koivu" style={{width:28,height:28}} />
-        <Link to="/" style={{color:'white',fontWeight:600,textDecoration:'none'}}>Koivulauta</Link>
+    <header className="site-header" style={{position:'relative'}}>
+          <div className="logo">
+            <div className="logo-k">K</div>
+            <Link to="/" style={{color:'inherit',fontWeight:700,textDecoration:'none'}}>Koivulauta</Link>
       </div>
 
-      <div style={{display:'flex',gap:8,alignItems:'center'}} className="desktop-controls">
-        <LocaleSwitcher />
-        <ThemeToggle />
-      </div>
+          <div style={{display:'flex',gap:8,alignItems:'center'}} className="header-controls">
+            <select className="lang-select" onChange={(e) => { const val = e.target.value; if (window.i18n) window.i18n.changeLanguage(val); else { const event = new CustomEvent('langChange', {detail:val}); window.dispatchEvent(event); } }} defaultValue={typeof navigator !== 'undefined' ? (navigator.language && navigator.language.startsWith('en') ? 'en' : 'fi') : 'fi'}>
+              <option value="fi">Suomi</option>
+              <option value="en">English</option>
+            </select>
+            <ThemeToggle />
+            <LocaleSwitcher style={{display:'none'}} />
+          </div>
 
-      <button
-        className="menu-btn"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        aria-label="Open menu"
-      >
-        ☰
-      </button>
+          <button
+            className="menu-btn"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
 
-      <div className={open ? "menu active" : "menu"} onClick={(e) => e.stopPropagation()}>
+          <div className={open ? "menu active" : "menu"} onClick={(e) => e.stopPropagation()}>
         <div className="menu-header" style={{display:'flex',justifyContent:'space-between',alignItems:'center',paddingBottom:8,borderBottom:'1px solid #eee'}}>
           <strong>{t ? t('users') : 'Users'}</strong>
           <span style={{fontSize:12,color: online ? 'green' : 'gray'}}>{online ? (t ? t('online') : 'Online') : (t ? t('offline') : 'Offline')}</span>

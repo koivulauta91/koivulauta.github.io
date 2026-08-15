@@ -1,0 +1,26 @@
+mutation SeedDatabase @transaction {
+  board_insertMany(data: [
+    { slug: "tech", nameFi: "Teknologia", nameEn: "Technology" },
+    { slug: "news", nameFi: "Uutiset", nameEn: "News" },
+    { slug: "art", nameFi: "Taide", nameEn: "Art" }
+  ])
+  user_insertMany(data: [
+    { username: "alice", email: "alice@example.com" },
+    { username: "bob", email: "bob@example.com" },
+    { username: "charlie", email: "charlie@example.com" }
+  ])
+  thread_insertMany(data: [
+    { board: { id: "00000000-0000-0000-0000-000000000001" }, title: "Welcome to Tech", createdAt: "2023-10-01T10:00:00Z" },
+    { board: { id: "00000000-0000-0000-0000-000000000002" }, title: "Today's Headlines", createdAt: "2023-10-01T12:00:00Z" },
+    { board: { id: "00000000-0000-0000-0000-000000000003" }, title: "Abstract Paintings", createdAt: "2023-10-01T14:00:00Z" }
+  ])
+  post_insertMany(data: [
+    { thread: { id: "00000000-0000-0000-0000-000000000001" }, content: "Hello world!", imageUrl: "https://example.com/1.jpg", language: "en" },
+    { thread: { id: "00000000-0000-0000-0000-000000000002" }, content: "Breaking news here.", imageUrl: "https://example.com/2.jpg", language: "fi" },
+    { thread: { id: "00000000-0000-0000-0000-000000000003" }, content: "Look at these colors.", imageUrl: "https://example.com/3.jpg", language: "en" }
+  ])
+  report_insertMany(data: [
+    { post: { id: "00000000-0000-0000-0000-000000000001" }, user: { id: "00000000-0000-0000-0000-000000000001" }, reason: "Spam" },
+    { post: { id: "00000000-0000-0000-0000-000000000002" }, user: { id: "00000000-0000-0000-0000-000000000002" }, reason: "Inappropriate" }
+  ])
+}

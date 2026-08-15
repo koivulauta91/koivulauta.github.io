@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
 
-import {
-  addDoc,
-  collection
-} from "firebase/firestore";
-import {
-  collection,
-  getDocs,
-} from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 function Threads() {
   const [threads, setThreads] =

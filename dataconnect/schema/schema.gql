@@ -1,0 +1,34 @@
+type Board @table {
+  slug: String!
+  nameFi: String!
+  nameEn: String!
+  descriptionFi: String
+  descriptionEn: String
+}
+
+type Thread @table {
+  board: Board!
+  title: String!
+  createdAt: Timestamp!
+}
+
+type Post @table {
+  thread: Thread!
+  content: String!
+  imageUrl: String!
+  language: String!
+  authorName: String
+}
+
+type User @table {
+  username: String!
+  email: String!
+  avatarUrl: String
+  bio: String
+}
+
+type Report @table {
+  post: Post!
+  user: User!
+  reason: String!
+}

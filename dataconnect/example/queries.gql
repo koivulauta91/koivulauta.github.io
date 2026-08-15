@@ -1,0 +1,128 @@
+mutation CreateBoard @auth(expr: "auth.token.admin == true") {
+  board_insert(data: {slug: "announcements", nameFi: "Ilmoitukset", nameEn: "Announcements"})
+}
+
+mutation DeleteBoard($id: UUID!) @auth(expr: "auth.token.admin == true") {
+  board_delete(id: $id)
+}
+
+mutation UpdateBoard($id: UUID!, $descriptionEn: String) @auth(expr: "auth.token.admin == true") {
+  board_update(id: $id, data: {descriptionEn: $descriptionEn})
+}
+
+query GetBoard($id: UUID!) @auth(level: PUBLIC, insecureReason: "Publicly visible board information.") {
+  board(id: $id) {
+    nameEn
+    descriptionEn
+  }
+}
+
+query ListBoards @auth(level: PUBLIC, insecureReason: "Publicly visible board list.") {
+  boards {
+    slug
+    nameEn
+  }
+}
+
+mutation CreateThread($boardId: UUID!, $title: String!) @auth(level: USER) {
+  thread_insert(data: {boardId: $boardId, title: $title, createdAt_expr: "request.time"})
+}
+
+mutation DeleteThread($id: UUID!) @auth(level: USER) {
+  thread_delete(id: $id)
+}
+
+mutation UpdateThread($id: UUID!, $title: String!) @auth(level: USER) {
+  thread_update(id: $id, data: {title: $title})
+}
+
+query GetThread($id: UUID!) @auth(level: PUBLIC, insecureReason: "Public threads.") {
+  thread(id: $id) {
+    title
+    createdAt
+  }
+}
+
+query ListThreads($boardId: UUID!) @auth(level: PUBLIC, insecureReason: "Public thread list.") {
+  threads(where: {boardId: {eq: $boardId}}) {
+    title
+  }
+}
+
+mutation CreatePost($threadId: UUID!, $content: String!, $imageUrl: String!, $language: String!) @auth(level: USER) {
+  post_insert(data: {threadId: $threadId, content: $content, imageUrl: $imageUrl, language: $language})
+}
+
+mutation DeletePost($id: UUID!) @auth(level: USER) {
+  post_delete(id: $id)
+}
+
+mutation UpdatePost($id: UUID!, $content: String!) @auth(level: USER) {
+  post_update(id: $id, data: {content: $content})
+}
+
+query GetPost($id: UUID!) @auth(level: PUBLIC, insecureReason: "Public posts.") {
+  post(id: $id) {
+    content
+    authorName
+  }
+}
+
+query ListPosts($threadId: UUID!) @auth(level: PUBLIC, insecureReason: "Public posts list.") {
+  posts(where: {threadId: {eq: $threadId}}) {
+    content
+  }
+}
+
+mutation CreateUser @auth(level: USER) {
+  user_insert(data: {id_expr: "auth.uid", username: "NewUser", email: "user@example.com"})
+}
+
+mutation DeleteUser @auth(level: USER) {
+  user_delete(id_expr: "auth.uid")
+}
+
+mutation UpdateUser($bio: String) @auth(level: USER) {
+  user_update(id_expr: "auth.uid", data: {bio: $bio})
+}
+
+query GetMyUser @auth(level: USER) {
+  user(id_expr: "auth.uid") {
+    username
+    bio
+  }
+}
+
+query ListUsers @auth(level: PUBLIC, insecureReason: "Public user directory.") {
+  users {
+    username
+  }
+}
+
+mutation CreateReport($postId: UUID!, $reason: String!) @auth(level: USER) {
+  report_insert(data: {postId: $postId, userId_expr: "auth.uid", reason: $reason})
+}
+
+mutation DeleteReport($id: UUID!) @auth(expr: "auth.token.admin == true") {
+  report_delete(id: $id)
+}
+
+mutation UpdateReport($id: UUID!, $reason: String!) @auth(expr: "auth.token.admin == true") {
+  report_update(id: $id, data: {reason: $reason})
+}
+
+query GetReport($id: UUID!) @auth(expr: "auth.token.admin == true") {
+  report(id: $id) {
+    reason
+    postId
+  }
+}
+
+query ListReports @auth(expr: "auth.token.admin == true") {
+  reports {
+    reason
+    user {
+      username
+    }
+  }
+}

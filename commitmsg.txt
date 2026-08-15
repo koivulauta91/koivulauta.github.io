@@ -1,0 +1,5 @@
+﻿build: add base href and remove CNAME to fix hosting paths
+
+Ensure index.html uses <base href="/"> so assets resolve on hosting; remove CNAME (using Firebase hosting instead)
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>

@@ -29,47 +29,25 @@ function Home() {
 
       <div className="container">
         <div className="grid" id="categories">
-          <div className="card fi" style={{ display: isFi ? "block" : "none" }}>
-            <h3>{t('categories.general') || 'Yleinen keskustelu'}</h3>
-          </div>
+          <a href="/boards?category=satunnainen" className="card" style={{textDecoration:'none'}}>
+            <h3>{t('categories.satunnainen') || 'Satunnainen'}</h3>
+          </a>
 
-          <div className="card fi" style={{ display: isFi ? "block" : "none" }}>
-            <h3>{t('categories.tech') || 'Teknologia'}</h3>
-          </div>
+          <a href="/boards?category=politiikka" className="card" style={{textDecoration:'none'}}>
+            <h3>{t('categories.politiikka') || 'Politiikka'}</h3>
+          </a>
 
-          <div className="card fi" style={{ display: isFi ? "block" : "none" }}>
-            <h3>{t('categories.gaming') || 'Pelit'}</h3>
-          </div>
+          <a href="/boards?category=vapaa-aika" className="card" style={{textDecoration:'none'}}>
+            <h3>{t('categories.vapaa_aika') || 'Vapaa-aika'}</h3>
+          </a>
 
-          <div className="card fi" style={{ display: isFi ? "block" : "none" }}>
-            <h3>{t('categories.education') || 'Opinnot'}</h3>
-          </div>
+          <a href="/boards?category=tietotekniikka" className="card" style={{textDecoration:'none'}}>
+            <h3>{t('categories.tietotekniikka') || 'Tietotekniikka'}</h3>
+          </a>
 
-          <div className="card en" style={{ display: !isFi ? "block" : "none" }}>
-            <h3>{t('categories.general') || 'General Discussion'}</h3>
-          </div>
-
-          <div className="card en" style={{ display: !isFi ? "block" : "none" }}>
-            <h3>{t('categories.tech') || 'Technology'}</h3>
-          </div>
-
-          <div className="card en" style={{ display: !isFi ? "block" : "none" }}>
-            <h3>{t('categories.gaming') || 'Gaming'}</h3>
-          </div>
-
-          <div className="card en" style={{ display: !isFi ? "block" : "none" }}>
-            <h3>{t('categories.education') || 'Education'}</h3>
-          </div>
-        </div>
-
-        <h2>{t('users') || 'Käyttäjät'}</h2>
-
-        <div className="card">
-          Matti92 <span className="online">● {t('online') || 'Online'}</span>
-        </div>
-
-        <div className="card">
-          JohnSmith <span className="offline">● {t('offline') || 'Offline'}</span>
+          <a href="/boards?category=ajoneuvot" className="card" style={{textDecoration:'none'}}>
+            <h3>{t('categories.ajoneuvot') || 'Ajoneuvot'}</h3>
+          </a>
         </div>
       </div>
 

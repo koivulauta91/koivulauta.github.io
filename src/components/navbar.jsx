@@ -10,19 +10,7 @@ import { doc, getDoc } from "firebase/firestore";
 function Navbar() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [online, setOnline] = useState(typeof navigator !== 'undefined' ? navigator.onLine : true);
   const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    const on = () => setOnline(true);
-    const off = () => setOnline(false);
-    window.addEventListener('online', on);
-    window.addEventListener('offline', off);
-    return () => {
-      window.removeEventListener('online', on);
-      window.removeEventListener('offline', off);
-    };
-  }, []);
 
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden';
@@ -79,11 +67,6 @@ function Navbar() {
           </button>
 
           <div className={open ? "menu active" : "menu"} onClick={(e) => e.stopPropagation()}>
-        <div className="menu-header" style={{display:'flex',justifyContent:'space-between',alignItems:'center',paddingBottom:8,borderBottom:'1px solid #eee'}}>
-          <strong>{t ? t('users') : 'Users'}</strong>
-          <span style={{fontSize:12,color: online ? 'green' : 'gray'}}>{online ? (t ? t('online') : 'Online') : (t ? t('offline') : 'Offline')}</span>
-        </div>
-
         <div className="menu-links" style={{display:'flex',flexDirection:'column',gap:10,paddingTop:10}}>
           <Link to="/" onClick={close}>{t ? t('home') : 'Home'}</Link>
           <Link to="/threads" onClick={close}>{t ? t('threads') : 'Threads'}</Link>

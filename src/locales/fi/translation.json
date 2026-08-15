@@ -6,5 +6,20 @@
   "admin": "Admin",
   "boards": "Alueet",
   "threads": "Ketjut",
-  "telegram": "Telegram"
+  "telegram": "Telegram",
+  "welcome_title": "Tervetuloa Koivulautaan",
+  "welcome_desc": "Kaksikielinen keskustelufoorumi suomalaisille ja kansainvälisille käyttäjille.",
+  "register_button": "Rekisteröidy",
+  "users": "Käyttäjät",
+  "online": "Online",
+  "offline": "Offline",
+  "dark_mode": "Tumma tila",
+  "light_mode": "Vaalea tila",
+  "categories": {
+    "satunnainen": "Satunnainen",
+    "politiikka": "Politiikka",
+    "vapaa_aika": "Vapaa-aika",
+    "tietotekniikka": "Tietotekniikka",
+    "ajoneuvot": "Ajoneuvot"
+  }
 }

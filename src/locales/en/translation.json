@@ -6,5 +6,20 @@
   "admin": "Admin",
   "boards": "Boards",
   "threads": "Threads",
-  "telegram": "Telegram"
+  "telegram": "Telegram",
+  "welcome_title": "Welcome to Koivulauta",
+  "welcome_desc": "A bilingual discussion forum for Finnish and international users.",
+  "register_button": "Register",
+  "users": "Users",
+  "online": "Online",
+  "offline": "Offline",
+  "dark_mode": "Dark mode",
+  "light_mode": "Light mode",
+  "categories": {
+    "satunnainen": "Random",
+    "politiikka": "Politics",
+    "vapaa_aika": "Leisure",
+    "tietotekniikka": "IT",
+    "ajoneuvot": "Vehicles"
+  }
 }

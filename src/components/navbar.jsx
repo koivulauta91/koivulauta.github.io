@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LocaleSwitcher from "./localeSwitcher";
 import ThemeToggle from "./themetoggle";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,10 @@ function Navbar() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const location = useLocation();
+
+  // Don't render the Navbar on the homepage to avoid duplicate headers
+  if (location && location.pathname === "/") return null;
 
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden';

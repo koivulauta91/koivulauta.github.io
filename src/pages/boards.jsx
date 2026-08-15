@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import { auth, db } from "../firebase/firebase";
 
@@ -7,11 +8,21 @@ import {
   addDoc,
   doc,
   getDoc,
+  serverTimestamp
 } from "firebase/firestore";
 
 function Boards() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [category, setCategory] = useState("");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const q = new URLSearchParams(location.search).get('category');
+    if (q) setCategory(q);
+    // or try to infer from path like /category/slug if needed
+  }, [location]);
 
   const createThread = async () => {
     try {
@@ -26,38 +37,25 @@ function Boards() {
         auth.currentUser.uid
       );
 
-      const userSnap =
-        await getDoc(userRef);
+      const userSnap = await getDoc(userRef);
 
       if (!userSnap.exists()) {
         alert("Käyttäjätietoja ei löytynyt.");
         return;
       }
 
-      const userData =
-        userSnap.data();
+      const userData = userSnap.data();
 
-      await addDoc(
-        collection(db, "threads"),
-        {
-          title,
-          content,
-          language:
-            userData.language || "fi",
-
-          author:
-            userData.username ||
-            auth.currentUser.email,
-
-          authorId:
-            auth.currentUser.uid,
-
-          createdAt:
-            new Date(),
-
-          replies: 0,
-        }
-      );
+      await addDoc(collection(db, "threads"), {
+        title,
+        content,
+        category: category || "satunnainen",
+        language: userData.language || "fi",
+        author: userData.username || auth.currentUser.email,
+        authorId: auth.currentUser.uid,
+        createdAt: serverTimestamp(),
+        replies: 0,
+      });
 
       alert("Keskustelu luotu!");
 
@@ -67,32 +65,33 @@ function Boards() {
     } catch (error) {
       console.error(error);
 
-      alert(
-        "Virhe: " +
-          error.message
-      );
+      alert("Virhe: " + error.message);
     }
   };
 
   return (
-    <div
-      style={{
-        padding: "20px",
-      }}
-    >
+    <div style={{ padding: "20px" }}>
       <h1>Luo keskustelu</h1>
+
+      <label>Kategoria</label>
+      <br />
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="satunnainen">Satunnainen</option>
+        <option value="politiikka">Politiikka</option>
+        <option value="vapaa-aika">Vapaa-aika</option>
+        <option value="tietotekniikka">Tietotekniikka</option>
+        <option value="ajoneuvot">Ajoneuvot</option>
+      </select>
+
+      <br />
+      <br />
 
       <input
         type="text"
         placeholder="Otsikko"
         value={title}
-        onChange={(e) =>
-          setTitle(e.target.value)
-        }
-        style={{
-          width: "100%",
-          padding: "10px",
-        }}
+        onChange={(e) => setTitle(e.target.value)}
+        style={{ width: "100%", padding: "10px" }}
       />
 
       <br />
@@ -101,24 +100,14 @@ function Boards() {
       <textarea
         placeholder="Kirjoita viesti..."
         value={content}
-        onChange={(e) =>
-          setContent(e.target.value)
-        }
-        style={{
-          width: "100%",
-          height: "200px",
-          padding: "10px",
-        }}
+        onChange={(e) => setContent(e.target.value)}
+        style={{ width: "100%", height: "200px", padding: "10px" }}
       />
 
       <br />
       <br />
 
-      <button
-        onClick={createThread}
-      >
-        Luo keskustelulanka
-      </button>
+      <button onClick={createThread}>Luo keskustelulanka</button>
     </div>
   );
 }

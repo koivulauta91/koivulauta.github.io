@@ -53,6 +53,7 @@ function AppRoutes() {
       <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
       <Route path="/boards" element={<Boards />}/>
       <Route path="/threads" element={<Threads />}/>
+      <Route path="/category/:slug" element={<Threads />}/>
     </Routes>
   );
 }

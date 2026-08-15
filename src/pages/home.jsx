@@ -29,25 +29,25 @@ function Home() {
 
       <div className="container">
         <div className="grid" id="categories">
-          <a href="/boards?category=satunnainen" className="card" style={{textDecoration:'none'}}>
-            <h3>{t('categories.satunnainen') || 'Satunnainen'}</h3>
-          </a>
+          <div className="card">
+            <h3><a href="/category/satunnainen" style={{textDecoration:'none',color:'inherit'}}>{t('categories.satunnainen') || 'Satunnainen'}</a></h3>
+          </div>
 
-          <a href="/boards?category=politiikka" className="card" style={{textDecoration:'none'}}>
-            <h3>{t('categories.politiikka') || 'Politiikka'}</h3>
-          </a>
+          <div className="card">
+            <h3><a href="/category/politiikka" style={{textDecoration:'none',color:'inherit'}}>{t('categories.politiikka') || 'Politiikka'}</a></h3>
+          </div>
 
-          <a href="/boards?category=vapaa-aika" className="card" style={{textDecoration:'none'}}>
-            <h3>{t('categories.vapaa_aika') || 'Vapaa-aika'}</h3>
-          </a>
+          <div className="card">
+            <h3><a href="/category/vapaa-aika" style={{textDecoration:'none',color:'inherit'}}>{t('categories.vapaa_aika') || 'Vapaa-aika'}</a></h3>
+          </div>
 
-          <a href="/boards?category=tietotekniikka" className="card" style={{textDecoration:'none'}}>
-            <h3>{t('categories.tietotekniikka') || 'Tietotekniikka'}</h3>
-          </a>
+          <div className="card">
+            <h3><a href="/category/tietotekniikka" style={{textDecoration:'none',color:'inherit'}}>{t('categories.tietotekniikka') || 'Tietotekniikka'}</a></h3>
+          </div>
 
-          <a href="/boards?category=ajoneuvot" className="card" style={{textDecoration:'none'}}>
-            <h3>{t('categories.ajoneuvot') || 'Ajoneuvot'}</h3>
-          </a>
+          <div className="card">
+            <h3><a href="/category/ajoneuvot" style={{textDecoration:'none',color:'inherit'}}>{t('categories.ajoneuvot') || 'Ajoneuvot'}</a></h3>
+          </div>
         </div>
       </div>
 

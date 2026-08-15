@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { auth, db } from "./firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -43,22 +43,40 @@ function AdminRoute({ children }) {
   return isAdmin ? children : <Navigate to="/" replace />;
 }
 
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
+      <Route path="/boards" element={<Boards />}/>
+      <Route path="/threads" element={<Threads />}/>
+    </Routes>
+  );
+}
+
+function AppWrapper() {
+  // useLocation must be inside Router; this wrapper will choose whether to render Navbar/Footer
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  return (
+    <>
+      {!isHome && <Navbar />}
+      <main style={{padding:'20px',minHeight:'70vh'}}>
+        <AppRoutes />
+      </main>
+      {!isHome && <Footer />}
+    </>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <main style={{padding:'20px',minHeight:'70vh'}}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
-          <Route path="/boards" element={<Boards />}/>
-          <Route path="/threads" element={<Threads />}/>
-        </Routes>
-      </main>
-      <Footer />
+      <AppWrapper />
     </BrowserRouter>
   );
 }

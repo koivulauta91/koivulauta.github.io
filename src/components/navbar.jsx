@@ -98,7 +98,7 @@ function Navbar() {
           <ThemeToggle />
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
 
